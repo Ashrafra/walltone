@@ -59,7 +59,7 @@ public class SecondActivity_wallpaper extends AppCompatActivity {
                     Log.d("Content","Content: "+response.body().get(0).getContent());
 
                     List<Post2.Content> contents = response.body().get(0).getContent();
-                    customAdapter = new CustomAdapter(getApplicationContext(), contents, id);
+                    customAdapter = new CustomAdapter(SecondActivity_wallpaper.this, contents, id);
                     chhildGrid.setAdapter(customAdapter);
 
                 } else {

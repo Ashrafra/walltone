@@ -1,5 +1,6 @@
 package com.example.walltone;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -19,13 +20,13 @@ import static com.example.walltone.R.id.ImageViewId;
 import static com.example.walltone.R.id.textViewId;
 
 public class CustomAdapter extends BaseAdapter {
-    private Context context;
+    private Activity context;
     public List<Post2.Content> wallpaper2; // after creating the model class "Post2"
     private LayoutInflater inflater;
     private int id;
 
 
-     public CustomAdapter(Context context, List<Post2.Content> wallpaper, int id) {
+     public CustomAdapter(Activity context, List<Post2.Content> wallpaper, int id) {
         this.context = context;
         this.wallpaper2 = wallpaper;
         this.id= id;
@@ -73,6 +74,7 @@ public class CustomAdapter extends BaseAdapter {
                 Intent intent = new Intent(context, FullScreenActivity.class);
                 intent.putExtra("ID", id);
                 intent.putExtra("Imgurl", wallpaper2.get(i).getJpgImage());
+                intent.putExtra("position", i);
                 context.startActivity(intent);
             }
         });

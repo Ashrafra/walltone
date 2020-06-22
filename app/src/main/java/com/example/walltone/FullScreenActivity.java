@@ -84,6 +84,7 @@ public class FullScreenActivity extends AppCompatActivity {
     public static final int PERMISSION_WRITE = 0;
     String fileUri;
     private String Imgurl;
+    private int position;
 
 
     @Override
@@ -98,6 +99,8 @@ public class FullScreenActivity extends AppCompatActivity {
 
         limit= 200;
         index= 0;
+
+        position = getIntent().getIntExtra("position",0);
 
         recyclerView=findViewById(recylerViewId);
         recyclerView.setHasFixedSize(true);
@@ -123,6 +126,7 @@ public class FullScreenActivity extends AppCompatActivity {
                     List<Post2.Content> contents = response.body().get(0).getContent();
 
                     RecyclerViewAdapter adapter = new RecyclerViewAdapter(contents, getApplicationContext());
+                    recyclerView.smoothScrollToPosition(position);
                     recyclerView.setAdapter(adapter);
 
                 } else {
@@ -182,7 +186,7 @@ public class FullScreenActivity extends AppCompatActivity {
                 } catch(IOException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(getApplicationContext(), "Image Saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Image Saved at "+Environment.getExternalStorageDirectory() + "/walltone" , Toast.LENGTH_LONG).show();
             }
             @Override
             public void onLoadCleared(Drawable placeholder) {
